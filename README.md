@@ -86,7 +86,7 @@ POST /api/users
   POST /api/thoughts/:thoughtId/reactions
   Body: {
     "reactionBody": "I agree!",
-    "username": "john"
+    "username": "somayyah"
   }
 
 
@@ -97,11 +97,11 @@ POST /api/users
   [
     {
       "_id": "60ab3e8d8a6f4d001fd1d9a1",
-      "username": "john",
-      "email": "john@example.com",
+      "username": "somayyah",
+      "email": "somayyah@example.com",
       "createdAt": "2022-05-25T10:30:00.000Z",
       "friends": [],
       "thoughts": []
     },
     {
-      "_id": "60ab3e8 --># social-Network-API
+      "_id": "60ab3e8 -->
