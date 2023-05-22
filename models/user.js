@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
   {
@@ -17,7 +17,13 @@ const userSchema = new Schema(
         validator: function (v) {
           return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
         },
-        message: "Please enter a valid email"
+      //   email: {
+      //     type: String,
+      //     required: true,
+      //     unique: true,
+      //     match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
+      // },
+        message: "Please enter a valid email address"
       },
       required: [true, "Email required"]
     },
@@ -45,4 +51,4 @@ userSchema.virtual('friendCount').get(function () {
 
 const User = model('User', userSchema);
 
-export default User;
+module.exports = User;

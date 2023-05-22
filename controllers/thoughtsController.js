@@ -1,6 +1,6 @@
-import { User, Thought } from '../models';
+const { User, Thought } = require('../models');
 
-export default {
+module.exports=  {
   async getThoughts(req, res) {
     try {
       const thoughts = await Thought.find();
@@ -14,7 +14,7 @@ export default {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId });
       if (!thought) {
-        return res.status(404).json({ message: "No thought with that ID" });
+        return res.status(404).json({ message: "No thought was found with that ID" });
       }
       res.json(thought);
     } catch (err) {
@@ -31,7 +31,7 @@ export default {
         { new: true }
       );
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       res.json(dbUserData);
     } catch (err) {
@@ -47,7 +47,7 @@ export default {
         { new: true }
       );
       if (!dbThoughtData) {
-        return res.status(404).json({ message: "No thought with that ID" });
+        return res.status(404).json({ message: "No thought was found with that ID" });
       }
       res.json(dbThoughtData);
     } catch (err) {
@@ -59,13 +59,13 @@ export default {
     try {
       const dbThoughtData = await Thought.findOneAndDelete({ _id: params.thoughtId });
       if (!dbThoughtData) {
-        return res.status(404).json({ message: "No thought with that ID" });
+        return res.status(404).json({ message: "No thought was found with that ID" });
       }
       await User.findOneAndUpdate(
         { _id: params.userId },
         { $pull: { thoughts: params.thoughtId } }
       );
-      res.status(200).json({ message: `Successfully deleted the thought from user ID ${params.userId}` });
+      res.status(200).json({ message: `Deleted the thought ${params.userId}` });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -79,7 +79,7 @@ export default {
         { new: true, runValidators: true }
       );
       if (!dbThoughtData) {
-        return res.status(404).json({ message: "No thought found with this ID" });
+        return res.status(404).json({ message: "No thought was found with this ID" });
       }
       res.json(dbThoughtData);
     } catch (err) {
@@ -95,9 +95,9 @@ export default {
         { new: true, runValidators: true }
       );
       if (!dbThoughtData) {
-        return res.status(404).json({ message: "No thought found with this ID" });
+        return res.status(404).json({ message: "No thought was found with this ID" });
       }
-      res.json({ message: "Successfully deleted the reaction" });
+      res.json({ message: "Deleted the reaction" });
     } catch (err) {
     res.status(500).json(err);
   }

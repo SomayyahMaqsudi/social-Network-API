@@ -1,6 +1,6 @@
-import { Thought, User } from '../models';
+const { Thought, User } = require('../models');
 
-export default {
+module.exports = {
   async getUsers(req, res) {
     try {
       const dbUserData = await User.find({});
@@ -17,7 +17,7 @@ export default {
         .populate("friends")
         .select("-__v");
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       res.json(dbUserData);
     } catch (err) {
@@ -42,7 +42,7 @@ export default {
         { runValidators: true }
       );
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       res.json(dbUserData);
     } catch (err) {
@@ -54,14 +54,14 @@ export default {
     try {
       const dbUserData = await User.findOneAndDelete({ _id: params.userId });
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       await User.updateMany(
         { _id: { $in: dbUserData.friends } },
         { $pull: { friends: params.id } }
       );
       await Thought.deleteMany({ username: dbUserData.username });
-      res.json({ message: "Successfully deleted user, associated friend(s) and associated thought(s)" });
+      res.json({ message: "Deleted user, associated friends and thoughts" });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -75,7 +75,7 @@ export default {
         { new: true, runValidators: true }
       );
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       res.json(dbUserData);
     } catch (err) {
@@ -91,7 +91,7 @@ export default {
         { new: true, runValidators: true }
       );
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user found with this ID" });
+        return res.status(404).json({ message: "No user was found with this ID" });
       }
       res.json(dbUserData);
     } catch (err) {

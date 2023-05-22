@@ -12,8 +12,8 @@ connection.once('open', async () => {
 
     const users = [
       {
-        username: 'frjohned',
-        email: 'john@hotmail.com'
+        username: 'somayyah',
+        email: 'somayyah@gmail.com'
       },
       {
         username: 'sam',
@@ -23,12 +23,12 @@ connection.once('open', async () => {
 
     const thoughts = [
       {
-        thoughtText: 'Many, many moons ago...',
-        username: 'Kim'
+        thoughtText: 'hiiiii...',
+        username: 'chris'
       },
       {
-        thoughtText: 'How many times must I...',
-        username: 'Chris'
+        thoughtText: 'Helloooo...',
+        username: 'Jack'
       }
     ];
 
@@ -37,7 +37,7 @@ connection.once('open', async () => {
 
     console.table(users);
     console.table(thoughts);
-    console.info('Seeding complete! 🌱');
+    console.info('Seeding is completed!');
     process.exit(0);
   } catch (error) {
     console.error(error);
